@@ -1,4 +1,6 @@
 defmodule GenReport.Parser do
+  alias GenReport.Months
+
   def parse_file(filename) do
     filename
     |> File.stream!()
@@ -21,25 +23,6 @@ defmodule GenReport.Parser do
   end
 
   defp translate_month(line) do
-    List.update_at(line, 3, & month_name/1)
-  end
-
-  defp month_name(month_number) do
-    month_names = %{
-      "1" => "janeiro",
-      "2" => "fevereiro",
-      "3" => "março",
-      "4" => "abril",
-      "5" => "maio",
-      "6" => "junho",
-      "7" => "julho",
-      "8" => "agosto",
-      "9" => "setembro",
-      "10" => "outubro",
-      "11" => "novembro",
-      "12" => "dezembro",
-    }
-
-    month_names[month_number]
+    List.update_at(line, 3, & Months.month_name/1)
   end
 end
