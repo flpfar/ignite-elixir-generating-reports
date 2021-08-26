@@ -1,0 +1,15 @@
+{
+  "excluded": [],
+  "failed": [],
+  "invalid": [],
+  "passed": [
+    {
+      "describe": "parse_file/1",
+      "file": "/home/felipe/study/ignite/ignite-elixir-generating-reports/test/parser_test.exs",
+      "line": 7,
+      "module": "Elixir.GenReport.ParserTest",
+      "test": "test parse_file/1 parses the file"
+    }
+  ],
+  "skiped": []
+}
