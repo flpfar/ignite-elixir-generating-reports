@@ -24,7 +24,7 @@ defmodule GenReport do
     %{
       all_hours: Enum.into(@names, %{}, & {&1, 0}),
       hours_per_month: Enum.into(@names, %{}, fn name ->
-        {name, Enum.into(GenReport.Months.months_list, %{}, & {&1, 0})}
+        {name, Enum.into(GenReport.DateHelper.months_list, %{}, & {&1, 0})}
       end)
     }
   end

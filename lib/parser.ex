@@ -1,5 +1,5 @@
 defmodule GenReport.Parser do
-  alias GenReport.Months
+  alias GenReport.DateHelper
 
   def parse_file(filename) do
     filename
@@ -23,6 +23,6 @@ defmodule GenReport.Parser do
   end
 
   defp translate_month(line) do
-    List.update_at(line, 3, & Months.month_name/1)
+    List.update_at(line, 3, & DateHelper.month_name/1)
   end
 end
