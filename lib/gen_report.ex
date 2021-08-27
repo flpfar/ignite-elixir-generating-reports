@@ -14,6 +14,13 @@ defmodule GenReport do
     "vinicius"
   ]
 
+  def compare_times do
+    {sequence, _} = :timer.tc(fn -> GenReport.build("gen_report.csv") end)
+    {parallel, _} = :timer.tc(fn -> GenReport.build_with_many(["part_1.csv", "part_2.csv", "part_3.csv"]) end)
+
+    %{sequence: sequence, parallel: parallel}
+  end
+
   def build, do: {:error, "Insira o nome de um arquivo"}
 
   def build(filename) do
