@@ -1,14 +1,6 @@
 {
   "excluded": [],
-  "failed": [
-    {
-      "describe": "build/1",
-      "file": "/home/felipe/study/ignite/ignite-elixir-generating-reports/test/gen_report_test.exs",
-      "line": 10,
-      "module": "Elixir.GenReportTest",
-      "test": "test build/1 When passing file name return a report"
-    }
-  ],
+  "failed": [],
   "invalid": [],
   "passed": [
     {
@@ -24,6 +16,13 @@
       "line": 16,
       "module": "Elixir.GenReportTest",
       "test": "test build/1 When no filename was given, returns an error"
+    },
+    {
+      "describe": "build/1",
+      "file": "/home/felipe/study/ignite/ignite-elixir-generating-reports/test/gen_report_test.exs",
+      "line": 10,
+      "module": "Elixir.GenReportTest",
+      "test": "test build/1 When passing file name return a report"
     }
   ],
   "skiped": []

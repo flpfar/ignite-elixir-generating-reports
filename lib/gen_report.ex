@@ -23,16 +23,24 @@ defmodule GenReport do
   end
 
   defp build_report([name, hours, _, month, year], %{
-         all_hours: all_hours,
-         hours_per_month: hours_per_month,
-         hours_per_year: hours_per_year
+         "all_hours" => all_hours,
+         "hours_per_month" => hours_per_month,
+         "hours_per_year" => hours_per_year
        }) do
     all_hours = Map.put(all_hours, name, all_hours[name] + hours)
 
     hours_per_month = update_submap(hours_per_month, name, month, hours)
     hours_per_year = update_submap(hours_per_year, name, year, hours)
 
-    %{all_hours: all_hours, hours_per_month: hours_per_month, hours_per_year: hours_per_year}
+    build_report_map(all_hours, hours_per_month, hours_per_year)
+  end
+
+  defp build_report_map(all_hours, hours_per_month, hours_per_year) do
+    %{
+      "all_hours" => all_hours,
+      "hours_per_month" => hours_per_month,
+      "hours_per_year" => hours_per_year
+    }
   end
 
   defp update_submap(map, key, subkey, value) do
@@ -49,11 +57,7 @@ defmodule GenReport do
     all_years = build_map_from_list(DateHelper.years_list(), 0)
     hours_per_year = build_map_from_list(@names, all_years)
 
-    %{
-      all_hours: all_hours,
-      hours_per_month: hours_per_month,
-      hours_per_year: hours_per_year
-    }
+    build_report_map(all_hours, hours_per_month, hours_per_year)
   end
 
   defp build_map_from_list(list, value) do
