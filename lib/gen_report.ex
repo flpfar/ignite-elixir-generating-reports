@@ -22,6 +22,45 @@ defmodule GenReport do
     |> Enum.reduce(report_acc(), &build_report/2)
   end
 
+  def build_with_many(filenames) do
+    filenames
+    |> Task.async_stream(&build/1)
+    |> Enum.reduce(report_acc(), fn {:ok, result}, report ->
+      merge_results(result, report)
+    end)
+  end
+
+  defp merge_results(
+         %{
+           "all_hours" => all_hours1,
+           "hours_per_month" => hours_per_month1,
+           "hours_per_year" => hours_per_year1
+         },
+         %{
+           "all_hours" => all_hours2,
+           "hours_per_month" => hours_per_month2,
+           "hours_per_year" => hours_per_year2
+         }
+       ) do
+    all_hours = merge_maps(all_hours1, all_hours2)
+
+    hours_per_month = merge_nested_maps(hours_per_month1, hours_per_month2)
+
+    hours_per_year = merge_nested_maps(hours_per_year1, hours_per_year2)
+
+    build_report_map(all_hours, hours_per_month, hours_per_year)
+  end
+
+  defp merge_maps(map1, map2) do
+    Map.merge(map1, map2, fn _, value1, value2 -> value1 + value2 end)
+  end
+
+  defp merge_nested_maps(map1, map2) do
+    Map.merge(map1, map2, fn _, value1, value2 ->
+      merge_maps(value1, value2)
+    end)
+  end
+
   defp build_report([name, hours, _, month, year], %{
          "all_hours" => all_hours,
          "hours_per_month" => hours_per_month,

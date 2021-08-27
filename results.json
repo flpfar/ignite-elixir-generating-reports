@@ -13,16 +13,16 @@
     {
       "describe": "build/1",
       "file": "/home/felipe/study/ignite/ignite-elixir-generating-reports/test/gen_report_test.exs",
-      "line": 16,
+      "line": 11,
       "module": "Elixir.GenReportTest",
-      "test": "test build/1 When no filename was given, returns an error"
+      "test": "test build/1 When passing file name return a report"
     },
     {
       "describe": "build/1",
       "file": "/home/felipe/study/ignite/ignite-elixir-generating-reports/test/gen_report_test.exs",
-      "line": 10,
+      "line": 19,
       "module": "Elixir.GenReportTest",
-      "test": "test build/1 When passing file name return a report"
+      "test": "test build/1 When no filename was given, returns an error"
     }
   ],
   "skiped": []
